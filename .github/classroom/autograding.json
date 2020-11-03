@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Caesar",
+      "setup": "",
+      "run": "ruby 06caesar/caesar_test.rb",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+      "name": "Grades",
+      "setup": "",
+      "run": "ruby 07grades/grades_test.rb",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 7
+    },
+    {
+      "name": "Contacts",
+      "setup": "",
+      "run": "ruby 08contacts/contacts_test.rb",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 8
+    }
+  ]
+}
