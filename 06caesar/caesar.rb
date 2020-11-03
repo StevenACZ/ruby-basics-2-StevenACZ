@@ -8,3 +8,30 @@
 # Append the new letter to the ciphertext.
 
 # Finally print the ciphertext to the screen.
+
+class String
+  def letter?
+    /[A-Za-z]/.match?(self)
+  end
+end
+
+key = 0
+ciphertext = ""
+
+loop do
+  print("Key: ")
+  key = gets.to_i
+  key.positive? && break
+end
+
+print("plaintext: ")
+plaintext = gets.strip.to_s
+
+abc = [*"a".."z", *"A".."Z"]
+
+plaintext.split("").each do |l|
+  current = l.letter? ? abc[(abc.find_index(l).to_i + key) % 52] : l
+  ciphertext += (current == current.upcase) && (l == l.upcase) ? current.upcase : current.downcase
+end
+
+puts("ciphertext: #{ciphertext}")
