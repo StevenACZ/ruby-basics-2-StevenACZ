@@ -17,3 +17,49 @@
 
 # For each student in the sorted collection, show the message 'Name scored X points' followed by the bar.
 # The bar should be 50 characters long. If the maximum score is 1000 points, each character should be worth 20 points.
+
+class String
+  def letter?
+    /[A-Za-z]/.match?(self)
+  end
+end
+
+# Preguntando por la cantidad de estudiantes
+cant_student = 0
+loop do
+  print("Number of student: ")
+  cant_student = gets.to_i
+  cant_student.positive? && break
+end
+
+# Preguntando por el nombre, nota_1 y nota_2 de cada estudiante
+a = ""
+b = 0
+c = 0
+
+students = {}
+
+x = 1
+while x <= cant_student
+  print("Student #{x}: ")
+  a, b, c = gets.to_s.split(",")
+
+  if a.letter? && b.to_i >= 0 && c.to_i >= 0 && c.to_i + b.to_i <= 100
+    students[a.strip] = [b.to_i, c.to_i]
+    x += 1
+  end
+end
+
+# Separador
+puts("#{"-" * 50}")
+puts("Results:")
+
+# Ordenando del score mas alto al menor
+students = Hash[ students.sort_by { |k, v| (v[0] * 10) - (v[1] * 2) <= 0 ? 0 : (v[0] * 10) - (v[1] * 2) } ].to_a.reverse.to_h
+
+# Mostrando los datos
+students.each do |k, v|
+  score = (v[0] * 10) - (v[1] * 2) <= 0 ? 0 : (v[0] * 10) - (v[1] * 2)
+  puts("#{k} scored #{score} points")
+  puts("#{"#" * (score / 20)}#{":" * ((1000 / 20) - (score / 20)).abs}")
+end
