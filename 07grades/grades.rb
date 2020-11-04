@@ -51,15 +51,16 @@ while x <= cant_student
 end
 
 # Separador
-puts("#{"-" * 50}")
+puts("-" * 50)
 puts("Results:")
 
 # Ordenando del score mas alto al menor
-students = Hash[ students.sort_by { |k, v| (v[0] * 10) - (v[1] * 2) <= 0 ? 0 : (v[0] * 10) - (v[1] * 2) } ].to_a.reverse.to_h
+students = Hash[students.sort_by { |_, v| (v[0] * 10) - (v[1] * 2) <= 0 ? 0 : (v[0] * 10) - (v[1] * 2) }]
+students = students.to_a.reverse.to_h
 
 # Mostrando los datos
 students.each do |k, v|
   score = (v[0] * 10) - (v[1] * 2) <= 0 ? 0 : (v[0] * 10) - (v[1] * 2)
   puts("#{k} scored #{score} points")
-  puts("#{"#" * (score / 20)}#{":" * ((1000 / 20) - (score / 20)).abs}")
+  puts("#{'#' * (score / 20)}#{':' * ((1000 / 20) - (score / 20)).abs}")
 end
