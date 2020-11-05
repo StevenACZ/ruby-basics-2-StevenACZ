@@ -38,7 +38,6 @@ end
 
 # Display
 def display(contacts)
-  puts("--------------------------------------------------")
   puts("All your contacts:")
   contacts.each do |k, _v|
     puts("- #{k}")
@@ -61,7 +60,6 @@ end
 
 # Show
 def show(name, contacts)
-  puts("-" * 50)
   if contacts.key?(name)
     contacts[name].each do |k, v|
       puts("- #{k}: #{v}")
@@ -87,7 +85,6 @@ end
 
 # Delete
 def delete(name, contacts)
-  puts("-" * 50)
   if contacts.key?(name)
     contacts.delete(name)
     puts("#{name} has been deleted")
@@ -117,11 +114,11 @@ def next_step
 end
 
 n_loop = 0
-loop do
-  n_loop.zero? ? welcome : next_step
+until n_loop.zero? ? welcome : next_step
   action = gets.to_s.strip
   case action
   when "display"
+    puts("-" * 50)
     display(contacts)
   when "add"
     name = srting
@@ -129,6 +126,7 @@ loop do
     add(name, contacts)
   when "show"
     name = srting
+    puts("-" * 50)
     show(name, contacts)
   when "update"
     name = srting
@@ -136,10 +134,13 @@ loop do
     update(name, contacts)
   when "delete"
     name = srting
+    puts("-" * 50)
     delete(name, contacts)
   when "exit"
-    puts("Bye! #{break}")
+    puts("Bye!")
+    break
   else
+    puts("-" * 50)
     puts("Invalid action")
   end
   n_loop += 1
